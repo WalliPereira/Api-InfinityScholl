@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // o fetch roda de forma assincromo - o js chama o fectch e deixa ele rodando em background.
+
+        // Promise 
+        fetch("http://localhost:80/api/usuarios")
+        .then((resposta) => resposta.json()) // X JSON.parse(resposta)
+        .then((dados) => {
+            for(let usuario of dados) {
+                console.log("Nome do usuario", usuario.nome)
+            }
+        })
+
+        fetch("http://localhost:80/api/usuarios", {
+            method :"POST",
+            body: JSON.stringify({
+                nome: "Margot",
+                idade: 1,
+                cidade: "Berlin"
+            }),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+
+        .then((resposta) => resposta.json())
+        .then((dados) => alert(dados))
+    </script>
+</body>
+</html>
